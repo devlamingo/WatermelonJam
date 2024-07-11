@@ -1,0 +1,272 @@
+[gd_scene load_steps=17 format=3 uid="uid://5viemt5w5gd3"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/Labtop.gd" id="1_gvs82"]
+[ext_resource type="Texture2D" uid="uid://liiobo3l0j3y" path="res://Assets/Labtop/kali-linux-4k-pm-1152x864-transformed.jpeg" id="1_qmqri"]
+[ext_resource type="Texture2D" uid="uid://cjdoshn5e1b4v" path="res://Assets/Labtop/Background.png" id="2_q6kmu"]
+[ext_resource type="FontFile" uid="uid://h8dh5of61ebj" path="res://Assets/Labtop/FiraCode-Medium.ttf" id="3_l4i1a"]
+[ext_resource type="Texture2D" uid="uid://cq54fiofwsc44" path="res://Assets/Labtop/FileManager.png" id="4_ojw25"]
+[ext_resource type="Texture2D" uid="uid://c5os1ru1l26ur" path="res://Assets/Labtop/Terminal.png" id="5_qvud3"]
+[ext_resource type="Texture2D" uid="uid://drrokugqtsc3s" path="res://Assets/Labtop/Exit.png" id="7_mwf1y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15bv7"]
+bg_color = Color(0.6, 0.6, 0.6, 0.298039)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6hmf"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_68f11"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_15bv7")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_a6hmf")
+
+[sub_resource type="Animation" id="Animation_emldy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Loadingbar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wmguy"]
+resource_name = "Startup"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Loadingbar:value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.9, 3.1, 3.7, 4.4, 4.7, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 20.0, 20.0, 60.0, 60.0, 85.0, 85.0, 100.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_txdnj"]
+_data = {
+"RESET": SubResource("Animation_emldy"),
+"Startup": SubResource("Animation_wmguy")
+}
+
+[sub_resource type="Animation" id="Animation_1vddr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Preperingtxt:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["kari lienex."]
+}
+
+[sub_resource type="Animation" id="Animation_coi6j"]
+resource_name = "Typing"
+length = 9.0
+step = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Preperingtxt:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.4, 2.8, 3.2, 3.6, 4, 4.4, 4.8, 5.2, 5.6, 6, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["kari linex.", "kari linex..", "kari linex...", "kari linex....", "kari linex.", "kari linex..", "kari linex...", "kari linex....", "kari linex.", "kari linex..", "kari linex...", "kari linex....", "kari linex.", "kari linex..", "kari linex...", "kari linex....", "Welcome MR.C1"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_46u60"]
+_data = {
+"RESET": SubResource("Animation_1vddr"),
+"Typing": SubResource("Animation_coi6j")
+}
+
+[node name="Labtop" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gvs82")
+metadata/_edit_vertical_guides_ = [576.0]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_q6kmu")
+centered = false
+
+[node name="Kari" type="Sprite2D" parent="."]
+texture_filter = 2
+texture_repeat = 1
+position = Vector2(576, 324)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_qmqri")
+
+[node name="Loading" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 544.0
+offset_top = 440.0
+offset_right = 608.0
+offset_bottom = 444.0
+pivot_offset = Vector2(32, 0)
+
+[node name="Loadingbar" type="ProgressBar" parent="Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_68f11")
+rounded = true
+show_percentage = false
+
+[node name="Loadingplayer" type="AnimationPlayer" parent="Loading"]
+libraries = {
+"": SubResource("AnimationLibrary_txdnj")
+}
+
+[node name="Prepering" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 512.0
+offset_top = 430.0
+offset_right = 641.0
+offset_bottom = 453.0
+pivot_offset = Vector2(64, 0)
+
+[node name="Preperingtxt" type="Label" parent="Prepering"]
+layout_mode = 0
+offset_right = 129.0
+offset_bottom = 23.0
+text = "kari lienex."
+horizontal_alignment = 1
+
+[node name="Preperingplayer" type="AnimationPlayer" parent="Prepering"]
+libraries = {
+"": SubResource("AnimationLibrary_46u60")
+}
+
+[node name="Apps" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = 59.0
+offset_bottom = 56.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Apps"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.11, 0.11)
+theme_override_constants/separation = 85
+
+[node name="Filemanager" type="Button" parent="Apps/VBoxContainer"]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l4i1a")
+theme_override_font_sizes/font_size = 164
+text = "FileManager"
+icon = ExtResource("4_ojw25")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Terminal" type="Button" parent="Apps/VBoxContainer"]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l4i1a")
+theme_override_font_sizes/font_size = 164
+text = "Terminal"
+icon = ExtResource("5_qvud3")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Terminal" type="Window" parent="."]
+transparent_bg = true
+title = "Terminal"
+initial_position = 1
+size = Vector2i(790, 250)
+visible = false
+unresizable = true
+theme_override_colors/title_color = Color(1, 1, 1, 1)
+theme_override_fonts/title_font = ExtResource("3_l4i1a")
+theme_override_font_sizes/title_font_size = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Terminal"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="Terminal/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+auto_translate = false
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_l4i1a")
+placeholder_text = "Type the commands. (type \"help\")"
+virtual_keyboard_type = 4
+
+[node name="TextEdit" type="TextEdit" parent="Terminal/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_l4i1a")
+editable = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1061.0
+offset_top = 20.0
+offset_right = 1084.0
+offset_bottom = 43.0
+scale = Vector2(3, 3)
+icon = ExtResource("7_mwf1y")
+flat = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="animation_finished" from="Loading/Loadingplayer" to="." method="_on_loadingplayer_animation_finished"]
+[connection signal="animation_finished" from="Prepering/Preperingplayer" to="." method="_on_preperingplayer_animation_finished"]
+[connection signal="pressed" from="Apps/VBoxContainer/Terminal" to="." method="_on_terminal_pressed"]
+[connection signal="close_requested" from="Terminal" to="." method="_on_terminal_close_requested"]
+[connection signal="text_submitted" from="Terminal/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

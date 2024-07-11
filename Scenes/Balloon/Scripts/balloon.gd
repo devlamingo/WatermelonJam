@@ -1,0 +1,1 @@
+class_name Balloon extends StaticBody2D

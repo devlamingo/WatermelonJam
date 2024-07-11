@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtbl135bd0q67"]
+
+[ext_resource type="Script" path="res://Scenes/Box/Scripts/normal_box.gd" id="1_7mc28"]
+[ext_resource type="Texture2D" uid="uid://dvd8k01aqgv7q" path="res://Assets/Box/Box.png" id="1_axglq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t5s5"]
+size = Vector2(16, 16)
+
+[node name="Normalbox" type="CharacterBody2D"]
+collision_layer = 48
+collision_mask = 3
+platform_on_leave = 2
+platform_floor_layers = 2
+script = ExtResource("1_7mc28")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_axglq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5t5s5")

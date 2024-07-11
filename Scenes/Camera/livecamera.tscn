@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://vtohx2d75x12"]
+
+[ext_resource type="Texture2D" uid="uid://cple2t4mwbbd7" path="res://Assets/Light/Light.png" id="1_18o2e"]
+[ext_resource type="Script" path="res://Scenes/Camera/Scripts/livecamera.gd" id="1_o4qv8"]
+[ext_resource type="Texture2D" uid="uid://dyf3n7ds28vbn" path="res://Assets/icon.svg" id="2_omtpa"]
+
+[node name="Livecamera" type="Area2D"]
+script = ExtResource("1_o4qv8")
+
+[node name="Camera" type="Sprite2D" parent="."]
+scale = Vector2(0.046875, 0.046875)
+texture = ExtResource("2_omtpa")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 27)
+scale = Vector2(1, 2)
+polygon = PackedVector2Array(23.5, 12, -23.5, 12, 0, -12)
+
+[node name="Light" type="Sprite2D" parent="."]
+modulate = Color(100, 0.053, 0.03, 0.39)
+z_index = 1
+texture_filter = 2
+texture_repeat = 1
+position = Vector2(0, 27)
+scale = Vector2(1, 2)
+texture = ExtResource("1_18o2e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

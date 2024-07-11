@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://duuoytow7wjss"]
+
+[ext_resource type="Script" path="res://Scenes/Plate/Scripts/normalplate.gd" id="1_fohsf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp6uu"]
+size = Vector2(16, 8)
+
+[node name="Normalplate" type="Area2D"]
+collision_layer = 32
+collision_mask = 16
+monitorable = false
+script = ExtResource("1_fohsf")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 16
+local_coords = true
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(8, 1)
+gravity = Vector2(0, -32)
+angular_velocity_min = 29.09
+angular_velocity_max = 29.09
+damping_min = 15.152
+damping_max = 15.152
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_qp6uu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

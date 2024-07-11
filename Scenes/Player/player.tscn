@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvwqke7hjci4j"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_o7kp6"]
+[ext_resource type="Texture2D" uid="uid://dhq41tx73wsbt" path="res://Assets/Player/Player.png" id="2_wpmp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhmyh"]
+size = Vector2(8, 10.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqb61"]
+radius = 4.12311
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 478
+platform_floor_layers = 2
+script = ExtResource("1_o7kp6")
+
+[node name="Character" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+texture = ExtResource("2_wpmp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.375)
+shape = SubResource("RectangleShape2D_uhmyh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_fqb61")
+
+[node name="Playercamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+ignore_rotation = false
+zoom = Vector2(4, 4)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Bounce" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(0, 5)
+collision_mask = 64
